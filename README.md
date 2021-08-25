@@ -6,3 +6,5 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 | Name | Function | IP Address |
 | -------- | --------| --------- |
 | Kali VM  | Attacking Machine | 192.168.1.90 |
+| Capstone VM | Target Machine | 192.168.1.105 |
+| ELK Server | Monitoring Machine | 192.168.1.100 |
