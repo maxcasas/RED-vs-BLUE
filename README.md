@@ -31,4 +31,16 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 
 - The directory asks for authentication in order to access it. Reading the authentication method, it says *For ashton's eyes only*
 
+- This gives us a good idea on what account to target
 
+## Brute force the password for the hidden directory
+
+- Because the folder is password protected, we need to either guess the password or brute force into the directory. In, this case, it would be much more efficient to use a brute force attack, specifically Hydra.
+
+- Command used `hydra -l ashton -P ./wordlist/rockyou.txt -s 80 -f 192.168.1.105 http-get /company_folders/secret_folder`
+![Hydra](Images/hydra_psswd_hash.png)
+
+- We can see that Ashton's password is *leopoldo*
+- Going back to the *company_folders/secret_folder* enter the information that we found.
+
+- 
