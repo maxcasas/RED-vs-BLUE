@@ -101,4 +101,23 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 
 ## Analysis
 
+### Finding the target
 
+- In this grey hat environment we were able to find which server was the Web Server by noticing which host had port 80. The service running on this port is http which is an unsecure protocol as it doesn't encrypt it's traffic.
+
+### Locate vulnerable directories and files
+
+- After navigating to the vulnerable target we traveresed through the directories to find hints on which directories conatined sensitive data. We notice that the directory */secret_folder/* is no longer available to the public. 
+
+- Navigating to this directory requires authentication, and a note that states "for ashton's eyes only". This gives us information on what the username might be to access this directory.
+
+### Brute force the hidden directory
+
+- We used the hydra command to brute force the password for ashton's account. Here is a breakdown of the hydra command used.
+   - `hydra` - command
+   - `-l ashton` - login name
+   - `-P /usr/share/wordlists/rockyou.txt` - Point the password to load several passwords from a file.
+   - `-s 80` - run command on port 80
+   - `-f` - stop command after the first found username/password pair.
+   - `-vV` - Verbose mode which shows attempted username and password combinations
+   - 
