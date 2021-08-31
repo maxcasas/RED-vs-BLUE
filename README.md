@@ -120,4 +120,16 @@ Project demostrating my knowledge in defensive security, and pentration testing 
    - `-s 80` - run command on port 80
    - `-f` - stop command after the first found username/password pair.
    - `-vV` - Verbose mode which shows attempted username and password combinations
-   - 
+   - `192.168.1.105` - targeted address
+   - `http-get /company_folders/secret_folder` - send a http-get request to the targeted directory
+
+- Running this command was able to enumerate the password for ashton's account.
+- Using the credentials found we were able to find another file on how to connect to the Web Server via WebDav.
+
+### Connecting to Server via WebDav
+
+- WebDav is an extension of the hypertext protocol that allows clients to perform remote Web content authoring operation. Knowing this gives us the ability to add changes to the Web server.
+
+- With the given hash and username associated with the hash we are easily able to crack the hash with `john` or by using crackstation.net.
+
+### 
