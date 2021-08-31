@@ -1,7 +1,7 @@
 # RED-vs-BLUE
 Project demostrating my knowledge in defensive security, and pentration testing in a gray box environment.
 ## Network Topology
-![Topology](Images/red-team-env)
+![Topology](Images/red-team-env.png)
 
 | Name | Function | IP Address |
 | -------- | --------| --------- |
