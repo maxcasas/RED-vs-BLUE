@@ -103,7 +103,7 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 
 ### Finding the target
 
-- In this grey hat environment we were able to find which server was the Web Server by noticing which host had port 80. The service running on this port is http which is an unsecure protocol as it doesn't encrypt it's traffic.
+- In this gray box environment we were able to find which server was the Web Server by noticing which host had port 80. The service running on this port is http which is an unsecure protocol as it doesn't encrypt it's traffic.
 
 ### Locate vulnerable directories and files
 
