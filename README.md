@@ -60,9 +60,9 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 ## Connect to the server via WebDAV
 
 - In order to connect to the webserver via WebDAV we need to do as follows.
-  1. Open the **File System** from the desktop
-  2. Click **Browse Network**
-  3. In the URL bar, type: `dav://192.168.1.105/webdav` and enter ryans credentials to log in.
+  - Open the **File System** from the desktop
+  - Click **Browse Network**
+  - In the URL bar, type: `dav://192.168.1.105/webdav` and enter ryans credentials to log in.
 ![Webdav-login](Images/webdav_login.png)
 
 ## Upload a PHP reverse shell payload
