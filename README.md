@@ -45,7 +45,7 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 
 - Once inside the directory navigate the the *connect_to_corp_server* We find instructions on how to connect to the server via **WebDAV**
 - We can also see ryan's password hash.
-![webdav instructions](Imaages/web-dav-dir.png)
+![webdav instructions](Images/web-dav-dir.png)
 
 ## Connect to the server via WebDAV
 
@@ -57,7 +57,7 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 
 - The password is revealed as: `linux4u`
 
-## Connect to the server via WebDAV
+## Connect to the server via WebDAV Cont.
 
 - In order to connect to the webserver via WebDAV we need to do as follows.
   - Open the **File System** from the desktop
