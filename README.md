@@ -145,4 +145,39 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 
 - We now setup a listener with `msfconsole` so when the file is clicked on threw the website, the attacker is able to open a shell on the victim who clicked the shell.php file.
 
-# Blue Team
+# Incident Analysis with Kibana
+
+## Creating a Dashboard
+
+- In the Azure Jumpbox, open a brower and navigate to `http://192.168.1.100`. After navigating to the website, click on **Create dashboard** in the upper left hand side.
+
+- We now need to add reports to the dashboard. We do this by clicking **Add an existing**. Below are the following reports that I added to the dashboard.
+  - HTTP status codes for the top queries [Packetbeat] ECS
+  - Top 10 HTTP requests [Packetbeat] ECS
+  - Network Traffic Between Hosts [Packetbeat Flows] ECS
+  - Top Hosts Creating Traffic [Packetbeat Flows] ECS
+  - Connections over time [Packetbeat Flows] ECS
+  - HTTP error codes [Packetbeat] ECS
+  - Errors vs successful transactions [Packetbeat] ECS
+  - HTTP Transactions [Packetbeat] ECS
+
+## Using Queries to Visualize Data
+
+- We now need to query for the offensive traffic.
+  - Query: `source.ip: 192.168.1.90 and destination.ip: 192.168.1.105`
+  - ![Connections Over Time](Images/connect_over_time.png)
+- This image shows us a spike in activity during this small time frame. Any spike in active connections is an indicator that something is off.
+
+  - With the same query above, we are also able to see an unusual amount of HTTP requests sent to the secret folder directory, as well as information on the other directories. 
+  - ![http-requests](Images/http-requests.png)
+- Seeing this tells us that this directory was exposed to a Brute force attack.
+  - Knowing this we can adjust our query to add the directory that was targeted to get more information on the attack.
+  - Query: `source.ip: 192.168.1.90 and destination.ip: 192.168.1.105 and url.path: /company_folders/secret`
+  - ![hydra-agent](hydra-agent.png)
+  - Upon expanding one of these many logs, we can see that under the user_agent.original that the Hydra tool was being used to brute force this directory.
+  - When looking at our dashboard we can see a lot more information on this attack.
+  - Query: `HTTP status codes for the top queries [Packetbeat] ECS`
+  - ![http-status-codes](Images/http-status-codes.png)
+  - This report shows excessive 401 status codes which is an indicator of a Brute force attack.
+
+- 
