@@ -173,7 +173,7 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 - Seeing this tells us that this directory was exposed to a Brute force attack.
   - Knowing this we can adjust our query to add the directory that was targeted to get more information on the attack.
   - Query: `source.ip: 192.168.1.90 and destination.ip: 192.168.1.105 and url.path: /company_folders/secret`
-  - ![hydra-agent](hydra-agent.png)
+  ![hydra-agent](Images/hydra-agent.png)
   - Upon expanding one of these many logs, we can see that under the user_agent.original that the Hydra tool was being used to brute force this directory.
   - When looking at our dashboard we can see a lot more information on this attack.
   - Query: `HTTP status codes for the top queries [Packetbeat] ECS`
