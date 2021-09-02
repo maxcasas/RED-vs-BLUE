@@ -163,6 +163,8 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 
 ## Using Queries to Visualize Data
 
+### Signs of a Brute Force
+
 - We now need to query for the offensive traffic.
   - Query: `source.ip: 192.168.1.90 and destination.ip: 192.168.1.105`
   - ![Connections Over Time](Images/connect_over_time.png)
@@ -179,5 +181,7 @@ Project demostrating my knowledge in defensive security, and pentration testing 
   - Query: `HTTP status codes for the top queries [Packetbeat] ECS`
   - ![http-status-codes](Images/http-status-codes.png)
   - This report shows excessive 401 status codes which is an indicator of a Brute force attack.
+
+### Signs of Malicious file upload
 
 - 
