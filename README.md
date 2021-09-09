@@ -185,7 +185,7 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 ### Signs of Malicious file upload
 
 - With the source and destination query used previously we can look at the `Top 10 HTTP requests [Packetbeat] ECS` panel to see that WebDav was used and what files were accessed inside of it.
-![WebDav-Connection](Images/webdav-connection.png)
+![WebDav-Connection](Images/webdav-connections.png)
 
 - We can see that the *shell.php* file was used. Knowing that .php files are regularly used in web applications, this doesn't ultimately state an attack; however in our case it does. It tells us that this file may but malicous because we already found evidence of a brute force attack and have the malicious users ip `192.168.1.105`.
 
