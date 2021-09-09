@@ -178,10 +178,41 @@ Project demostrating my knowledge in defensive security, and pentration testing 
   ![hydra-agent](Images/hydra-agent.png)
   - Upon expanding one of these many logs, we can see that under the user_agent.original that the Hydra tool was being used to brute force this directory.
   - When looking at our dashboard we can see a lot more information on this attack.
-  - Query: `HTTP status codes for the top queries [Packetbeat] ECS`
+  - Panel: `HTTP status codes for the top queries [Packetbeat] ECS`
   - ![http-status-codes](Images/http-status-codes.png)
   - This report shows excessive 401 status codes which is an indicator of a Brute force attack.
 
 ### Signs of Malicious file upload
 
-- 
+- With the source and destination query used previously we can look at the `Top 10 HTTP requests [Packetbeat] ECS` panel to see that WebDav was used and what files were accessed inside of it.
+![WebDav-Connection](Images/webdav-connection.png)
+
+- We can see that the *shell.php* file was used. Knowing that .php files are regularly used in web applications, this doesn't ultimately state an attack; however in our case it does. It tells us that this file may but malicous because we already found evidence of a brute force attack and have the malicious users ip `192.168.1.105`.
+
+- Diving deeper, we added a `NOT destination.port: 80` filter. This helps us see other types of connections made to our websever that is not HTTP related. Any other types of traffic being made from the malicious users ip `192.168.1.105` should be looked at.
+![not-http](Images/not-http.png)
+- As we can see, there was a spike in non-http traffic during this time frame.
+- Filtering through the logs we are able to see that port 4444 is being used multiple times. This port is the default port for meterpreter and tells us that that the malicious user made a malicious file, specifically the *shell.php* file, and that this malicious file may have been used to open a reverse shell.
+
+
+## Alerts
+
+### Alerts for Brute Force behavior
+- There are a couple of alarms we can set to detect this kind of behavior. One alarm is if the http status code `401 Unauthorized` is returned from any server with a threshold of 10 in one hour. This threshold of 10 will help against false positives for forgotten password.
+- Another alert is to trigger when `user_agent.original` includes `hydra` in the name. Although this is very specific, it provides better security specifically for this tool.
+
+### Alerts for malicious file upload
+- An alert that we can implement to detect access to the webdav server is to trigger anytime this directory is accessed by a machine other than the machine that should have access.
+- An alert to detect malicious file uploads is to trigger anytime a `.php` file is uploaded to the server from unauthorized ip's.
+- Another alert we can implement to detect meterpreter sessions is an alert to trigger for any traffic over port `4444`.
+
+## Mitigation
+
+### Mitigation for Brute force
+- One way to harden our server from brture force attacks is to drop traffic from the offending IP address for one hour when the `401 Unathuroized` threshold is met.
+- Another way is to implement account lockouts to the login page.
+
+### Mitigation for Malicious file upload
+- One way to harden the connections to shared WebDav folder is to make the shared folder not accessible from the web interface.
+- Another way to harden connection to the shared folder is implement a firewall fule that restricts connections to the shared folder.
+- As far as malicious file uploads a similar mitigation strategy is used. This beging to remove the ability to upload files to this directory over the web interface.
