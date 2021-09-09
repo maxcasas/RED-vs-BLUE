@@ -187,12 +187,12 @@ Project demostrating my knowledge in defensive security, and pentration testing 
 - With the source and destination query used previously we can look at the `Top 10 HTTP requests [Packetbeat] ECS` panel to see that WebDav was used and what files were accessed inside of it.
 ![WebDav-Connection](Images/webdav-connections.png)
 
-- We can see that the *shell.php* file was used. Knowing that .php files are regularly used in web applications, this doesn't ultimately state an attack; however in our case it does. It tells us that this file may but malicous because we already found evidence of a brute force attack and have the malicious users ip `192.168.1.105`.
+- We can see that the *shell.php* file was used. Knowing that `.php` files are regularly used in web applications, this doesn't ultimately state an attack; however in our case it does. It tells us that this file may but malicous because we already found evidence of a brute force attack and have the malicious users ip `192.168.1.105`.
 
 - Diving deeper, we added a `NOT destination.port: 80` filter. This helps us see other types of connections made to our websever that is not HTTP related. Any other types of traffic being made from the malicious users ip `192.168.1.105` should be looked at.
 ![not-http](Images/not-http.png)
 - As we can see, there was a spike in non-http traffic during this time frame.
-- Filtering through the logs we are able to see that port 4444 is being used multiple times. This port is the default port for meterpreter and tells us that that the malicious user made a malicious file, specifically the *shell.php* file, and that this malicious file may have been used to open a reverse shell.
+- Filtering through the logs we are able to see that port `4444` is being used multiple times. This port is the default port for meterpreter and tells us that that the malicious user made a malicious file, specifically the *shell.php* file, and that this malicious file may have been used to open a reverse shell.
 
 
 ## Alerts
